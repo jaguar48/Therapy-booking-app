@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %} Call logs{% endblock title %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    {% block content %}
+
+        <p>welcome </p>
+        <table>
+            <tr>
+                <th>Identification</th>
+                <th>Message</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Feedback</th>
+                <th>account balance</th>
+            </tr>{% for call in calls %}
+            
+            <tr>        
+                <td>{{call.identification}}</td>
+                <td>{{call.message}}</td>
+                <td>{{call.subject}}</td>
+                <td>{{call.status}}</td>
+                <td><a href = "{% url 'callapp:feed' pk=call.id %}"role="button">Feedback</a></td>
+                <td><a href = "{% url 'callapp:delete' pk=call.id %}"role="button">Delete</a></td>
+
+                <td>{{account_balance}}</td>
+            </tr>{%endfor %}
+        </table>
+       
+       
+    {% endblock content %}
+
+   
+</body>
+
+</html>

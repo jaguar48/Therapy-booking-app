@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %} Schedule{% endblock title %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    
+    
+    
+    <script src='main.js'></script>
+    
+</head>
+<body onload="hide_user()">
+    {% block content %}
+
+        <p>Book a call with us </p>
+        {% if success %}
+            <p>Call booked successfully, <a href="{% url "callapp:calls" %}"  >click to see scheduled calls</a></p>
+            <script>
+                setTimeout("window.location.href=/;", 5000);
+                
+            </script>
+             
+              
+        {% else %}
+        <p>
+            <h2 style="color:blue">SCHEDULE FORM</h2>
+        </p>
+        
+        <!-- <style>
+            #id_user{
+            display:none;
+            }
+        </style> -->
+       <form method="post" action="" novalidate>
+            {% csrf_token %}
+           <input disabled type = "text" value={{request.user.username}} style="margin-left:-5opx;">
+            {{prime.as_p}}
+            
+
+        <button type="submit" class="btn btn-large">Send Message</button>
+        </form>
+    
+        {% endif %}
+    
+    {% endblock content %}
+        
+
+     {% block extrascript %}
+     <script>
+    //    jQuery('#id_user').hide()
+    //    $("[for=id_user]").hide();
+   </script>
+            <script>
+                //  $( document ).ready(function() {
+                //     jQuery('#id_specify').hide();
+                //     $("[for=id_specify]").hide();
+                // });
+                jQuery('#id_subject').on('change', () => {
+            // You can also do this with document.querySelector('')
+            if ($('#id_subject option:selected').text() == 'Other') {
+                jQuery('#id_specify').show()
+                  $("[for=id_specify]").show()
+                        
+            } else {                        
+                jQuery('#id_specify').hide()
+                  $("[for=id_specify]").hide()
+                  
+                 
+
+            }
+        }); 
+    </script>
+     {% endblock extrascript %}
+</body>
+
+</html>

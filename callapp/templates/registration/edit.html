@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Edit your account{% endblock %}
+
+{% block content %}
+<h1>Edit your account</h1>
+<p>You can edit your account using the following form:</p>
+<form method="post" enctype="multipart/form-data">
+    {{ user_prime.as_p }}
+    {{  profile_prime.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Save changes"></p>
+</form>
+
+{% if messages %}
+    <ul id="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags}}"{% endif %}>{{message}}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<script>
+    setTimeout(function(){
+        document.getElementById('messages').style.display = 'none';
+    },1000);
+ </script>
+{% endblock %}

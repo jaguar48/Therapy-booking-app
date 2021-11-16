@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}Call pal{% endblock %}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+
+    <div id ="mynav">
+        <ul>
+            <a href="{% url "callapp:home" %}"  ><li>Home</li></a>
+            {% if request.user.is_authenticated %}
+            <a href = "{% url "callapp:schedule" %}"> <li>Book Call </li></a>
+            {% endif %}
+            <li>About us</li>
+            <li>Services</li>
+        </ul>
+        
+            {% if request.user.is_authenticated %}
+                Hello {{ request.user.username }},
+                
+                <p>Welcome to your dashboard. You can <a href="{% url "callapp:edit" %}">edit
+                    your profile</a> </p><a href="{% url "callapp:password_change" %}">change
+                        your password</a> </p>
+                <a href="{% url "callapp:logout" %}?next=/">Logout</a>
+                <a href="{% url "callapp:calls" %}">view scheduled calls</a>
+            {% else %}
+                <p><a href="{% url "callapp:register" %}">Register</a></p>
+                <p><a href="{% url "callapp:login" %}">Log-in</a></p>
+            {% endif %}
+    
+        
+    </div>
+
+    <div >
+        {% block content %}
+
+        {% endblock content%}
+    </div>
+    {% block extrascript %}
+
+    {% endblock extrascript %}
+</body>
+
+</html>

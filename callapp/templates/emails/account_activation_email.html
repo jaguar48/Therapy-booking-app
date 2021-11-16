@@ -1,0 +1,7 @@
+{% autoescape off %}
+
+Hi {{ user.username}},
+please click on the link below to confirm your registrartion
+http://{{domain}} {% url 'callapp:activate' uidb64=uid token=token %}
+
+{% endautoescape %}

@@ -1,0 +1,916 @@
+
+<!doctype html>
+<html  lang="en" >
+<head>
+    <script>
+    var c0,v;
+    function gId(){
+        return "xyxxyxxx-xxxx-xxxx-yxxx-xxxxyxxxyxyx".replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c === "x" ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    };
+    function cookieGet(f,h){
+        return (v = document.cookie.match(new RegExp("(?:^|; )" + f + "=" + (h ? "([\-a-zA-Z0-9]+)" : "([^;]*)") ))) ? decodeURIComponent(v[1]) : null;
+    };
+    function cookieSet(f,v,t){
+                document.cookie = f + "=" + encodeURIComponent(v) + "; SameSite=None; Secure; expires=" + (t || "Thu, 01 Jan 2030 00:00:01 UTC") + "; path=/; domain=.capital.com;";
+            };
+    function getSID(){
+        return cookieGet('__cp_sid', 1);
+    };
+    function removeCookieSessionId() {
+        document.cookie = "__cp_sid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "__cp_at=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    };
+    cookieSet("__cp_sid", "", "Thu, 01 Jan 1970 00:00:00 UTC");
+    try{
+        v = window.localStorage.getItem("deviceProperties2");
+        c0 = v ? (JSON.parse(v)).installationId : false;
+    }catch(e){};
+    var tSID=cookieGet('__cp_tsid', 1),
+        deviceId=c0 || cookieGet('__cp_deviceId') ||  cookieGet('uid') || "gx5cola7-ckh0-x1rv-o8ss-94zpqs448hcn" || gId();
+    cookieSet('uid', deviceId);
+    cookieSet('__cp_deviceId', deviceId);
+
+    var deviceOS="Windows",deviceType="desktop",
+    tSID=cookieGet('__cp_tsid', 1),
+    devicePr="uu",
+    enURL = 'https://capital.com.by',
+    pURL = 'https://api.backend-capital.com/proxy',
+    ppURL = 'https://payment.backend-capital.com/payment',
+    lnProp = '',
+    wsURL = 'wss://api.backend-capital.com/proxy/connect|wss://api-2.backend-capital.com/proxy/connect',
+    uCountry = 'ng',
+    appVersion = 'com.capital.website:1.1.8.web.03/17.15:57',
+    appBuild = 'e3362ed71a34e0ee57c5',
+    snAppIdFb = '360773217625622',
+    countries_map={},cpXHRo,cpXHRs;
+
+    window.pageReadyFN = [];
+
+    var logged,uEm,uN;
+    function loginTry(a){
+        var sid = getSID();
+        if(sid && window.XMLHttpRequest){
+            var r = new XMLHttpRequest();
+            r.open('GET', pURL + '/ums/user/v1/' + (a ? a : 'profile'), false);
+            r.setRequestHeader('Session-Token', sid);
+            r.setRequestHeader('Device-Id', deviceId);
+            r.setRequestHeader('App-Version', appVersion);
+            function pLg() {
+                if (r.status === 200) {
+                    logged = true;
+                    if(r.responseText){
+                        var x,d=JSON.parse(r.responseText),l='user-logged';
+                        (x=document.getElementById('wphWrap')) && x.classList.add(l);
+                        document.body.classList.add(l);
+                        uEm = d.email;
+                        uN = d.firstName + " " + d.lastName;
+                    }
+                } else {
+                    document.cookie = "__cp_sid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                }
+            };
+            r.onload = pLg;
+            try{
+                r.send();
+            } catch(e){
+                try{
+                    var r = new XMLHttpRequest();
+                    r.open('GET', '/proxy/ums/user/v1/' + (a ? a : 'profile'), false);
+                    r.setRequestHeader('Session-Token', sid);
+                    r.setRequestHeader('Device-Id', deviceId);
+                    r.setRequestHeader('App-Version', appVersion);
+                    r.onload = pLg;
+                    r.send();
+                } catch(e) {
+                    document.cookie = "__cp_sid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                }
+            }
+        }
+
+        var webP = new Image();
+        webP.onload = webP.onerror = function () {
+             document.body.classList.add(webP.height == 1 ? 'webp' : 'no-webp');
+        };
+        webP.src = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoCAAEAAQAcJaQAA3AA/v3AgAA=';
+    };
+
+    if(window.XMLHttpRequest){
+        cpXHRo = window.XMLHttpRequest.prototype.open;
+        cpXHRs = window.XMLHttpRequest.prototype.send;
+        if(!tSID){
+            tSID = gId();
+            var xr0;xr0 = new XMLHttpRequest();xr0.open('GET', '/service?mode=tsid&tsid=' + tSID + '&d=' + deviceId , true);
+            xr0.onload = function() {
+                if (xr0.status === 200 && xr0.responseText) {
+                    cookieSet('__cp_tsid', tSID);
+                }
+            };
+            xr0.send();
+        };
+        var xr;
+        xr = new XMLHttpRequest();
+        xr.open('GET', '/service?mode=tk&d=' + deviceId + "&did=" + "323", true);
+        xr.send();
+    }
+</script>
+
+    <script>
+                window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'siteSection':'doc323'/* author */
+        });
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5BLNS36');</script>
+<meta name="google-signin-client_id" content="454579592242-gnbnhkk834jh482n40b71q2nm0hfrvjj.apps.googleusercontent.com">
+
+<link rel="apple-touch-icon" sizes="57x57" href="/img/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/img/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/img/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/img/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/img/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/img/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/img/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/img/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="img/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/img/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/img/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/img/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">    <meta charset="utf-8">
+    <title>Partnership Programme | Citiglobalmarket</title>
+    <meta name="description" content="Start earning by introducing clients to a world&#39;s first AI-powered trading platform.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+    <base href="/" />
+
+  <link rel="stylesheet" href="https://capital.com/css/head.css?v=1.7.62">
+  <link rel="stylesheet" href="https://capital.com/css/homepage.css?v=1.7.62" >
+  <link rel="stylesheet" href="https://capital.com/css/lp/lp_partnership_programme.css?v=1.7.62" >
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@capitalcom">
+  <meta name="twitter:title" content="The future of trading">
+  <meta name="twitter:description" content="Trading has never looked so beautiful. Trade over 2,000 of the world's biggest markets like the DAX 30, gold and Apple shares in one app with Citiglobalmarket award-winning platform. The best part? Become a better trader with eQ, an AI-powered trading bias detection system.">
+  <meta name="twitter:image" content="https://capital.com/img/sn/main.png">
+  <meta property="fb:app_id" content="360773217625622" />
+  <meta property="og:title" content="The future of trading" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://capital.com/partnership-programme-lp" />
+  <meta property="og:image" content="https://capital.com/img/sn/main.png" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:description" content="Trading has never looked so beautiful. Trade over 2,000 of the world's biggest markets like the DAX 30, gold and Apple shares in one app with Citiglobalmarket award-winning platform. The best part? Become a better trader with eQ, an AI-powered trading bias detection system." />
+  <meta itemprop="name" content="The future of trading">
+  <meta itemprop="description" content="Trading has never looked so beautiful. Trade over 2,000 of the world's biggest markets like the DAX 30, gold and Apple shares in one app with Citiglobalmarket award-winning platform. The best part? Become a better trader with eQ, an AI-powered trading bias detection system.">
+  <meta itemprop="image" content="https://capital.com/img/sn/main.png">
+</head>
+<body class="others">
+
+<div class="header-holder">
+        <div class="header">
+            <div class="header__burger">
+                <span></span>
+            </div>
+
+            <img src="img/png.png"style="height:38px; width:190px;margin-top:00px;"/>
+
+
+            <div class="header__nav">
+
+              <!-- <div class="header__nav--wrap">
+                <div class="header__nav--item">
+                  <a href="guidelines" class="header__nav--link">Guidelines</a>
+                </div>
+                <div class="header__nav--item">
+                  <a href="#" class="header__nav--link to-form" data-url="#faq">FAQ</a>
+                </div>
+                <div class="header__nav--item">
+                  <a href="legal" class="header__nav--link">Legal</a>
+                </div>
+              </div> -->
+
+
+
+                                <div class="header__nav--mbtn">
+                                                            <a href="/affiliate/register" class="button-main">Get the app</a>                </div>
+                            </div>
+
+
+
+            <div class="header__login" id="wphWrap">
+                <div id="wg_loginBtns">
+                    <a href="login" class="btn-login ln-auto"  id="wg_loginBtn">log In</a>
+                    <a href="register" class="button-main rounded "  data-type="s_head"><span>Register </span></a>
+                </div>
+                <div id="wg_userarea" class="profile-button">
+                    <span class="user-name">My account</span>
+                    <span class="nav-button"></span>
+                    <span class="main__sprite user-notif hidden" id="panelNotif"></span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="header__bg"></div>
+<div class="header__false "></div>
+
+<div class="page-content-area">
+    <section class="banner--video bDefault">
+    <div class="row-cont">
+      <div class="banner--first-wrap">
+        <div class="banner__wrap">
+          <div class="banner__same">
+              <img src=" img/jo-removebg-preview.png"/>
+            <!-- <svg>
+              <use href="https://capital.com/img/lp/partnership_programme/partnership_programme_awards.svg#award_1"></use>
+            </svg>
+            <svg>
+              <use href="https://capital.com/img/lp/partnership_programme/partnership_programme_awards.svg#award_2"></use>
+            </svg>
+            <svg>
+              <use href="https://capital.com/img/lp/partnership_programme/partnership_programme_awards.svg#award_3"></use>
+            </svg>
+            <svg>
+              <use href="https://capital.com/img/lp/partnership_programme/partnership_programme_awards.svg#award_4"></use>
+            </svg> -->
+          </div>
+          <div class="banner__txt-block">
+            <div class="banner__item">
+              <h2 data-text="Your access to investments: anytime, anywhere">Partnership Programme</h2>
+              <div class="banner-text">Start earning by introducing clients to a world&#39;s first AI-powered trading platform.</div>
+              <a href="register" class="button-main rounded-lg btn-lp">Open account</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section class="section gray">
+  <div class="row-cont">
+    <div class="text-center">
+      <h2>Be a part of our success</h2>
+      <p class="counter"><span class="dollar">$</span> <span class="counter__cont">20 000 000</span><!-- <span class="plus">+</span> --></p>
+      <p class="counter__desc">*Total commission paid to our partners in 2020-2021</p>
+    </div>
+    <div class="comission text-center">
+      <div class="h2">Choose the commission type that you prefer</div>
+      <div class="comission__list">
+        <div class="comission__item">
+          <div class="comission__wrap">
+            <div class="h3">CPA*</div>
+            <hr>
+            <p class="comission__text">Get up to <span>$800</span></p>
+          </div>
+          <p class="comission__desc">*CPA on verified and funded accounts only</p>
+        </div>
+        <div class="comission__item">
+          <div class="comission__wrap">
+            <div class="h3">Revenue Share*</div>
+            <hr>
+            <p class="comission__text">Get up to <span>30%</span></p>
+          </div>
+          <p class="comission__desc">*Revenue Share commission is not available in INDIA and the PAKISTAN</p>
+        </div>
+      </div>
+      <a href="/affiliate/register" class="button-main rounded-lg btn-lp">Open account</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--testimonials">
+  <div class="row-cont">
+    <div class="text-center">
+      <h2>Why Clients Love Us</h2>
+      <p>We are an award-winning company that wants to transform the trading landscape,making it more transparent, inclusive, and innovative.</p>
+    </div>
+    <div class="testimonials__list">
+      <div class="testimonials__item">
+        <div class="testimonials__wrap">
+          <div class="h3 text-center">Simple and Easy</div>
+          <picture>
+            <source srcset="https://capital.com/img/lp/partnership_programme/wclu_1.webp 1x, https://capital.com/img/lp/partnership_programme/wclu_1@2x.webp 2x" type="image/webp">
+            <img src="https://capital.com/img/lp/partnership_programme/wclu_1.png" alt="" srcset="https://capital.com/img/lp/partnership_programme/wclu_1.png 1x, https://capital.com/img/lp/partnership_programme/wclu_1@2x.png 2x" loading="lazy">
+          </picture>
+        </div>
+        <p class="testimonials__text">We cut through the fluff, making trading easy and accessible to everyone, as we believe it should be. Anyone can be a trader and learn how to trade smart with the right support, guidance and technology.</p>
+      </div>
+      <div class="testimonials__item">
+        <div class="testimonials__wrap">
+          <div class="h3 text-center">Ethical</div>
+          <picture>
+            <source srcset="https://capital.com/img/lp/partnership_programme/wclu_2.webp 1x, img/lp/partnership_programme/wclu_2@2x.webp 2x" type="image/webp">
+            <img src="https://capital.com/img/lp/partnership_programme/wclu_2.png" alt="" srcset="img/lp/partnership_programme/wclu_2.png 1x, img/lp/partnership_programme/wclu_2@2x.png 2x" loading="lazy">
+          </picture>
+        </div>
+        <p class="testimonials__text">Trading with confidence and peace of mind is paramount. Our services are trustworthy and transparent, regulated by FCA, SEC and ASIC.</p>
+      </div>
+      <div class="testimonials__item">
+        <div class="testimonials__wrap">
+          <div class="h3 text-center">Cutting-edge</div>
+          <picture>
+            <source srcset="https://capital.com/img/lp/partnership_programme/wclu_3.webp 1x, https://capital.com/img/lp/partnership_programme/wclu_3@2x.webp 2x" type="image/webp">
+            <img src="https://capital.com/img/lp/partnership_programme/wclu_3.png" alt="" srcset="https://capital.com/img/lp/partnership_programme/wclu_3.png 1x, https://capital.com/img/lp/partnership_programme/wclu_3@2x.png 2x" loading="lazy">
+          </picture>
+        </div>
+        <p class="testimonials__text">Citiglobalmarket has built an award-winning platform that connects you to international markets through a seamless trading experience. Our AI-powered app uses eQ bias detection to help you gain insight into your own trading behaviour, trading psychology, and make responsible decisions.</p>
+      </div>
+      <div class="testimonials__item">
+        <div class="testimonials__wrap">
+          <div class="h3 text-center">We are here to help you</div>
+          <picture>
+            <source srcset="https://capital.com/img/lp/partnership_programme/wclu_4.webp 1x, https://capital.com/img/lp/partnership_programme/wclu_4@2x.webp 2x" type="image/webp">
+            <img src="https://capital.com/img/lp/partnership_programme/wclu_4.png" alt="" srcset="https://capital.com/img/lp/partnership_programme/wclu_4.png 1x, https://capital.com/img/lp/partnership_programme/wclu_4@2x.png 2x" loading="lazy">
+          </picture>
+        </div>
+        <p class="testimonials__text">Our friendly customer support agents are available 24/7 via phone, email, live chat, Facebook, Telegram, WhatsApp and Instagram, and speak 15 languages . It normally takes only a few seconds to hear back from one of our customer service agents.</p>
+      </div>
+      <div class="testimonials__item">
+        <div class="testimonials__wrap">
+          <div class="h3 text-center">World-Class trading education</div>
+          <picture>
+            <source srcset="https://capital.com/img/lp/partnership_programme/wclu_5.webp 1x, https://capital.com/img/lp/partnership_programme/wclu_5@2x.webp 2x" type="image/webp">
+            <img src="https://capital.com/img/lp/partnership_programme/wclu_5.png" alt="" srcset="https://capital.com/img/lp/partnership_programme/wclu_5.png 1x, https://capital.com/img/lp/partnership_programme/wclu_5@2x.png 2x" loading="lazy">
+          </picture>
+        </div>
+        <p class="testimonials__text">It allows clients to expand their trading knowledge with ease through free guides, webinars and daily news on our platform.</p>
+      </div>
+      <div class="testimonials__item">
+        <div class="testimonials__wrap">
+          <div class="h3 text-center">Regular competitions and special offers</div>
+          <picture>
+            <source srcset="https://capital.com/img/lp/partnership_programme/wclu_6.webp 1x, https://capital.com/img/lp/partnership_programme/wclu_6@2x.webp 2x" type="image/webp">
+            <img src="https://capital.com/img/lp/partnership_programme/wclu_6.png" alt="" srcset="https://capital.com/img/lp/partnership_programme/wclu_6.png 1x, https://capital.com/img/lp/partnership_programme/wclu_6@2x.png 2x" loading="lazy">
+          </picture>
+        </div>
+        <p class="testimonials__text">It is proof that we value every single one of our clients and reward their trust in our capacity to meet their needs.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section gray">
+  <div class="row-cont">
+    <div class="text-center">
+      <h2>Why become a Citiglobalmarket partner?</h2>
+    </div>
+    <div class="why__list">
+      <div class="why__item">
+        <div class="why__icon">
+          <svg>
+            <use href="https://capital.com/img/lp/partnership_programme/why.svg#why_1"></use>
+          </svg>
+        </div>
+        <p class="why__text text-center">Bonuses for best partners*</p>
+      </div>
+      <div class="why__item">
+        <div class="why__icon">
+          <svg>
+            <use href="https://capital.com/img/lp/partnership_programme/why.svg#why_1"></use>
+          </svg>
+        </div>
+        <p class="why__text text-center">Personal manager</p>
+      </div>
+      <div class="why__item">
+        <div class="why__icon">
+          <svg>
+            <use href="img/lp/partnership_programme/why.svg#why_2"></use>
+          </svg>
+        </div>
+        <p class="why__text text-center">Weekly market updates</p>
+      </div>
+      <div class="why__item">
+        <div class="why__icon">
+          <svg>
+            <use href="img/lp/partnership_programme/why.svg#why_4"></use>
+          </svg>
+        </div>
+        <p class="why__text text-center">Customized marketing materials</p>
+      </div>
+    </div>
+    <p class="why__desc">*For partners who bring NBRB users only</p>
+  </div>
+</section>
+
+<section class="section section--faq" id="faq">
+  <div class="row-cont">
+    <h2 class="text-center">faq</h2>
+    <div class="expand-collapse-group">
+      <div class="expand-collapse">
+        <input type="checkbox" class="expand-collapse-control" id="row-1">
+        <div class="expand-collapse-inner">
+          <label for="row-1" class="expand-collapse-switcher">
+            <div class="expand-collapse-header">Which countries are restricted?</div>
+          </label>
+          <div class="expand-collapse-body"><p>USA, Canada, Japan, Turkey, Belgium, Pakistan, Iraq, Iran, DPRK, Mainland China, Palestine, Afghanistan, Syria, Somali, Botswana, Bahamas, Ethiopia, Ghana, Sri Lanka, Serbia, Tunisia, Trinidad and Tobago,United States Minor Outlying Islands, Yemen. Spain, Portugal (accepted without limitations).</p>
+</div>
+        </div>
+      </div>
+      <div class="expand-collapse">
+        <input type="checkbox" class="expand-collapse-control" id="row-2">
+        <div class="expand-collapse-inner">
+          <label for="row-2" class="expand-collapse-switcher">
+            <div class="expand-collapse-header">What are the minimum requirements for traffic sources?</div>
+          </label>
+          <div class="expand-collapse-body"><p>We accept social media influencers with 5,000+ followers or subscribers on one or more social media platforms (Youtube, Facebook, Instagram, Telegram etc.) and sites with no less than 2000 visits/month. Content needs to be related to trading, if the target audience falls under SEC and FCA licenses.</p>
+
+<p>Sources with fewer visits/subscribers may be accepted &nbsp;at the sole discretion of the company.</p>
+
+<p>Any applications with traffic sources offering bonuses, incentives, rebates for users under SEC or FCA licenses or where money making messages are present will be declined.</p>
+</div>
+        </div>
+      </div>
+      <div class="expand-collapse">
+        <input type="checkbox" class="expand-collapse-control" id="row-3">
+        <div class="expand-collapse-inner">
+          <label for="row-3" class="expand-collapse-switcher">
+            <div class="expand-collapse-header">Which documents and information do I need to supply to be approved as an affiliate?</div>
+          </label>
+          <div class="expand-collapse-body"><p>For legal entities it&rsquo;s obligatory to provide:</p>
+
+<ul>
+	<li>Proof of identity of the contact / authorised person</li>
+	<li>Certificate of incorporation or link to the online registry</li>
+	<li>Share register proving ownership (obligatory for FCA and SEC by request)</li>
+	<li>Memorandum and Articles of Association (obligatory for FCA and SEC by request)</li>
+	<li>Proof of identity for shareholders owning 25% (obligatory for FCA and SEC by request)</li>
+	<li>Proof of identity for directors (obligatory for FCA and SEC by request)</li>
+	<li>Proof of address for the business</li>
+</ul>
+
+<p>For individuals:</p>
+
+<ul>
+	<li>proof of identity</li>
+	<li>proof of address.</li>
+</ul>
+
+<p>We also request:</p>
+
+<ul>
+	<li>links to the sources of traffic</li>
+	<li>email address</li>
+	<li>telephone number</li>
+	<li>link to the site of the company (if applicable)</li>
+	<li>billing address</li>
+	<li>payment details on the name of the applicant/company.</li>
+</ul>
+</div>
+        </div>
+      </div>
+      <div class="expand-collapse">
+        <input type="checkbox" class="expand-collapse-control" id="row-4">
+        <div class="expand-collapse-inner">
+          <label for="row-4" class="expand-collapse-switcher">
+            <div class="expand-collapse-header">I can&#39;t enter my affiliate account. Who can help me?</div>
+          </label>
+          <div class="expand-collapse-body"><p>If you forgot your password you need to click on the Forgot your password? message in the login form and reset it. If you still can&rsquo;t enter after the password was changed you need to contact your affiliate manager or reach our affiliate team by email:&nbsp;<a href="mailto:support@Citiglobalmarket-inc.com">support@citiglobalmarket-inc.com</a></p>
+</div>
+        </div>
+      </div>
+      <div class="expand-collapse">
+        <input type="checkbox" class="expand-collapse-control" id="row-5">
+        <div class="expand-collapse-inner">
+          <label for="row-5" class="expand-collapse-switcher">
+            <div class="expand-collapse-header">Where I can find information about my manager?</div>
+          </label>
+          <div class="expand-collapse-body"><p>The name of your manager and his/her email address can be found on the Dashboard of your affiliate account.</p>
+</div>
+        </div>
+      </div>
+      <div class="expand-collapse">
+        <input type="checkbox" class="expand-collapse-control" id="row-6">
+        <div class="expand-collapse-inner">
+          <label for="row-6" class="expand-collapse-switcher">
+            <div class="expand-collapse-header">What is the minimum sum of commission available for withdrawal?</div>
+          </label>
+          <div class="expand-collapse-body"><p>Minimum commission sum available for payment is 1500 USD.</p>
+</div>
+        </div>
+      </div>
+      <div class="expand-collapse">
+        <input type="checkbox" class="expand-collapse-control" id="row-7">
+        <div class="expand-collapse-inner">
+          <label for="row-7" class="expand-collapse-switcher">
+            <div class="expand-collapse-header">How often commission is paid?</div>
+          </label>
+          <div class="expand-collapse-body"><p>Commission is paid on a monthly basis.</p>
+</div>
+        </div>
+      </div>
+      <div class="expand-collapse">
+        <input type="checkbox" class="expand-collapse-control" id="row-8">
+        <div class="expand-collapse-inner">
+          <label for="row-8" class="expand-collapse-switcher">
+            <div class="expand-collapse-header">What are the payment options available to withdraw affiliate commission?</div>
+          </label>
+          <div class="expand-collapse-body"><p>Commission can be paid by Crypto Transfer or directly to the trading account.</p>
+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--got-questions">
+  <div class="row-cont">
+    <h2>Got questions?</h2>
+    <p class="got-questions__text">Get in touch with us: <a href="mailto:support@Citiglobalmarket-inc.com">support@Citiglobalmarket-inc.com</a></p>
+  </div>
+</section>
+
+
+<style>
+    @media only screen and (max-width: 767px) {
+      #imx{
+         width: 600px;
+         height: 200%;
+         overflow-x: auto;
+         object-fit: cover;
+        object-position: bottom;
+        flex-direction: column;
+
+      }
+      #mx{
+         width: 400px;
+         height: 200%;
+         float: left;
+         margin-left: -80px
+         overflow-x: auto;
+         object-fit: cover;
+        object-position: bottom;
+        flex-direction: column;
+
+      }
+     }
+  </style>
+
+  <div class="trust-logo" >
+      <div class="row-cont">
+
+         <div class="trust-logo__holder">
+
+            <img src = "img/reu.png" id="imx" />
+         </div>
+      </div>
+   </div>
+  <div class="partners">
+    <div class="partners__holder">
+                      <img src = "img/er.png" id="mx" style="float: left; margin-left: -80px;" />
+
+    </div>
+  </div>
+  </div>
+<div class="section footer footer--custom"> <div class="row-cont"> <div class="footer__nav" itemscope itemtype="http://www.schema.org/SiteNavigationElement"> <div class="footer__nav--item">
+
+    <div class="footer__nav--title " itemprop="name"><a href="derivative-financial-instruments.html" itemprop="url">Markets</a></div>
+    <div class="footer__nav--list">
+        <a href="live-currency-prices" class="footer__nav--link ln-auto ">Forex</a>
+          <a href="live-cryptocurrency-prices" class="footer__nav--link ln-auto ">Cryptocurrencies</a>
+          <a href="live-share-prices" class="footer__nav--link ln-auto ">Shares</a>
+           </div> </div>
+
+
+        <div class="footer__nav--item"> <div class="footer__nav--title " itemprop="name">
+
+            For traders</div>
+        <div class="footer__nav--list">
+            {{-- <a href="financial-news-articles.html" class="footer__nav--link ln-auto ">News and features</a> --}}
+            {{-- <a href="video-tutorials.html" class="footer__nav--link ln-auto ">Citiglobalmarket TV</a> --}}
+            {{-- <a href="trading-webinars.html" class="footer__nav--link ln-auto ">Webinars</a> --}}
+            {{-- <a href="account-types.html" class="footer__nav--link ln-auto ">CFD Account types</a> --}}
+            <a href="professional-clients.html" class="footer__nav--link ln-auto ">Professional clients</a>
+            <a href="prime" class="footer__nav--link ln-auto ">Institutional</a>
+            {{-- <a href="economic-calendar.html" class="footer__nav--link ln-auto ">Economic calendar</a> --}}
+            <a href="capital-com-vs-competitors" class="footer__nav--link ln-auto ">Citiglobalmarket vs competitors</a>
+        </div> </div>
+
+<div class="footer__nav--item"> <div class="footer__nav--title " itemprop="name">
+    Learn to trade</div>
+
+<div class="footer__nav--list">
+    <a href="basics-of-trading" class="footer__nav--link ln-auto ">The basics of trading</a>
+    {{-- <a href="what-is-spread-betting.html" class="footer__nav--link ln-auto ">Spread betting guide</a> --}}
+    {{-- <a href="what-is-cfd-trading.html" class="footer__nav--link ln-auto ">CFD trading guide</a> --}}
+    <a href="trade-stocks" class="footer__nav--link ln-auto ">Shares trading guide</a>
+     <a href="trade-currency" class="footer__nav--link ln-auto ">Guide to currency trading</a>
+     <a href="trade-cryptocurrency" class="footer__nav--link ln-auto ">Cryptocurrency trading guide</a>
+     {{-- <a href="trade-indices.html" class="footer__nav--link ln-auto ">Indices trading guide</a> --}}
+     {{-- <a href="trade-etfs.html" class="footer__nav--link ln-auto ">ETF trading guide</a> --}}
+     <a href="trading-strategies-guide" class="footer__nav--link ln-auto ">Trading strategies guide</a>
+     <a href="trading-psychology-guide" class="footer__nav--link ln-auto ">Trading psychology guide</a>
+     {{-- <a href="financial-dictionary.html" class="footer__nav--link ln-auto ">Glossary</a> --}}
+     {{-- <a href="online-finance-courses.html" class="footer__nav--link ln-auto ">Courses</a> --}}
+</div>
+</div>
+
+     <div class="footer__nav--item">
+
+<div class="footer__nav--title " >About
+
+</div> <div class="footer__nav--list">
+<a href="why-capital-com" class="footer__nav--link ln-auto ">Why Citiglobalmarket?</a>
+<a href="about" class="footer__nav--link ln-auto ">About us</a>
+
+<a href="international-offices" class="footer__nav--link ln-auto ">Our Global Offices</a>
+<a href="is-capital-safe" class="footer__nav--link ln-auto ">Is Citiglobalmarket safe?</a>
+<a href="faq" class="footer__nav--link ln-auto ">FAQ</a>
+
+<a href="business-model" class="footer__nav--link ln-auto ">Compliance</a>
+<a href="referralprogramme" class="footer__nav--link ln-auto ">Referral programme</a>
+<a href="careers" class="footer__nav--link ln-auto ">Careers</a>
+<a href="contact-us" class="footer__nav--link ln-auto ">Contact Us</a>
+{{-- <a href="trade-confirmation" class="footer__nav--link ln-auto ">Trade confirmation</a> --}}
+<a href="partnership-programme-lp" class="footer__nav--link ln-auto ">Partnership Programme</a> </div>
+</div>
+<div class="footer__nav--item"> <div class="footer__numb">
+<div class="footer__numb-item footer__numb-item--title"> <i class="main__sprite main__sprite--ico-support"></i>
+<span>Contact support</span> </div> <div class="footer__numb-item">
+<i class="flag-min flag-min-gb"></i> <a href="tel:+12017494542" class="footer__numb--phone">+12017494542</a> </div>
+<div class="footer__numb-item footer__numb-item--mail"> <a href="mailto:support@capital.com">support@Citiglobalmarket-inc.com</a> </div> </div> <div class="footer__social"> <div class="footer__social--title">Follow us</div>
+
+<div class="footer__social--list">
+<br><br><a target="_blank" rel="nofollow noopener" href="https://www.facebook.com/citigblobalmarket/"></i>
+<span><i class="icon-facebook " style="color:white;"></i>   Facebook</span> </a>
+<br><a target="_blank" rel="nofollow noopener" href="https://instagram.com/citigmarket?utm_medium=copy_link" target="_blank">
+<span> <i class="icon-instagram on icon-check-empty" style="color:white;" ></i> Instagram</span> </a>
+
+<br><a target="_blank" rel="nofollow noopener" href="https://twitter.com/citigmarket">
+<br><span><i class="icon-twitter" style="color:white;"></i> Twitter</span> </a><br> <br>
+<a target="_blank" rel="nofollow noopener" href="https://youtube.com/channel/UCMMm-d29lpGwR927ISV9zhQ?sub_confirmation=1" target="_blank"> <span><i class="icon-youtube"  style="color:white;"></i> YouTube</span> </a>
+<br><a target="_blank" rel="nofollow noopener" href="https://t.me/Citiglobalmarketbot">
+<span><i class="icon-linkedin" style="color:white;"></i> Telegram</span> </a><br>
+<a target="_blank" rel="nofollow noopener" href="https://t.me/Citiglobalmarketbot">
+<span><i class="icon-rss" style="color:white;">
+</i> Rss</span> </a><br>
+</div> </div> <div class="footer__apps"> <div class="footer__apps--title">Download apps</div>
+<a target="_blank" rel="nofollow noopener" href="" class="badge-appstore"></a>
+<a target="_blank" rel="nofollow noopener" href="" class="badge-googleplay"></a> </div> </div> </div> </div></div>
+
+<footer class="footer-site"> <div class="footer-site-inner"> <div class="scroll-to-top" id="scrollToTop"></div> <div class="footer--text"> <div class="footer--text-item"> .</p><p>&nbsp;</p><p>&nbsp;</p><p>Citi Global Market Inc is registered in U.S with company registration number 7059. Authorised and regulated by the Financial Conduct Authority (FCA), under register number 801-3387.<br /><br />Citi Global Market Inc is regulated by US Securities and Exchange Commission (SEC) under license number 8-8177.&nbsp;Citi Global Market Inc, company Registration Number: 801-3387, registered address: 388 GREENWICH STREET
+TOWER BUILDING
+NEW YORK, NY 10013 UNITED STATES. Citi Global Market Inc is deemed authorised and regulated by the Financial Conduct Authority. The nature and extent of consumer protections may differ from those for firms based in the U.S. Details of the Temporary Permissions Regime, which allows EEA-based firms to operate in the U.S for a limited period while seeking full authorisation, are available on the Financial Conduct Authority&rsquo;s website.</p><p>&nbsp;</p><p>&nbsp;</p> </div> </div> <div class="footer__copyright"> &copy; 2021 Citi Global Market Inc.
+<nav class="copyright__links">  </nav> </div> <div class="footer__fix footer__fix--sticky-bar"> <div class="row-cont"> <div class="main__cookies" style="display: none" id="cookiesmsg"> <div class="main__cookies--wrap">By using the Citiglobalmarket website you agree to the use of <a href="" target="_blank" rel="noopener">cookies</a>.</div> <button class="main__cookies--close" id="cookiesmsgbtn" aria-label="Close GDRP popup"></button> </div> <div class="footer__prev show"> <i class="footer__prev--btn"></i> <div class="footer__prev--text"><span>A contract for difference (CFD) is a derivative product that derives its value.</span><span class='text-accord'> <span class='txt-bold'>99.9% of retail investor accounts dont lose money when trading CFDs with this provider.</span> </span></div> </div>
+
+<div class="fixed-contact " id="blinger-btn"> <div class="fixed-contact__icon">
+<div class="blg-rs"><div class="blg-r"></div><div class="blg-r"></div>
+<div class="blg-r"></div></div> </div> <p class="fixed-contact__desc">24/7 <span>Support</span></p>
+
+<div class="blg-c-w"> <div class="blg-cs"> <div class="blg-c-wp">
+
+<a href="contact-us" class="blg-c zd ln-auto"> <span class="blg-tp"> <span class="blg-tp-inner">Livechat</span> </span> </a> </div>
+<div class="blg-c-wp"> <a href="" class="blg-c vb ln-auto"> <span class="blg-tp"> <span class="blg-tp-inner">Viber</span> </span> </a> </div>
+<div class="blg-c-wp"> <a target="_blank" rel="nofollow noopener" href="https://api.whatsapp.com/send?phone=12017494542" class="blg-c wp"> <span class="blg-tp"> <span class="blg-tp-inner">Whatsapp</span> </span> </a> </div>
+<div class="blg-c-wp"> <a target="_blank" rel="nofollow noopener" href="https://t.me/Citiglobalmarketbot" class="blg-c tg"> <span class="blg-tp"> <span class="blg-tp-inner">Telegram</span> </span> </a> </div>
+<div class="blg-c-wp"> <a target="_blank" rel="nofollow noopener" href="https://www.facebook.com/citigblobalmarket/" class="blg-c fb"> <span class="blg-tp"> <span class="blg-tp-inner">Facebook</span> </span> </a> </div> </div> </div> </div> </div></div> </div>
+</footer>
+
+
+<div class="overlay hidden" id="ywrap">
+    <div class="form-container-big">
+        <div class="form-container-big-header">
+            <button class="close-button" id="yclose"></button>
+        </div>
+        <div class="form-container-big-content" id="yframe"></div>
+    </div>
+</div>
+
+<div class="overlay hidden js-langspp" >
+<div class="modal modal-language">
+    <div class="close-button modal-close"></div>
+    <div class="modal-header">
+        <div class="modal-title text-center">Select Language</div>
+    </div>
+    <div class="modal-content">
+        <div class="language-set">
+                <a href="https://capital.com/partnership-programme-lp"  class="ln-auto language-set_item active">
+            <span class="flag-min flag-min-gb language-set_flag"></span>English
+        </a>
+                <a href="https://capital.com/ar/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-ab language-set_flag"></span>	العَرَبِيَّة
+        </a>
+                <a href="https://capital.com/id/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-id language-set_flag"></span>Bahasa Indonesia
+        </a>
+                <a href="https://capital.com/ms/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-my language-set_flag"></span>Bahasa Melayu
+        </a>
+                <a href="https://capital.com/bg/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-bg language-set_flag"></span>Български
+        </a>
+                <a href="https://capital.com/cs/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-cz language-set_flag"></span>Čeština
+        </a>
+                <a href="https://capital.com/da/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-dk language-set_flag"></span>Dansk
+        </a>
+                <a href="https://capital.com/de/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-de language-set_flag"></span>Deutsch
+        </a>
+                <a href="https://capital.com/et/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-ee language-set_flag"></span>Eesti
+        </a>
+                <a href="https://capital.com/el/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-gr language-set_flag"></span>ελληνικά
+        </a>
+                <a href="https://capital.com/es/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-es language-set_flag"></span>Español
+        </a>
+                <a href="https://capital.com/fr/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-fr language-set_flag"></span>Français
+        </a>
+                <a href="https://capital.com/hr/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-hr language-set_flag"></span>Hrvatski
+        </a>
+                <a href="https://capital.com/it/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-it language-set_flag"></span>Italiano
+        </a>
+                <a href="https://capital.com/lv/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-lv language-set_flag"></span>Latviešu
+        </a>
+                <a href="https://capital.com/lt/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-lt language-set_flag"></span>Lietuvių
+        </a>
+                <a href="https://capital.com/hu/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-hu language-set_flag"></span>Magyar
+        </a>
+                <a href="https://capital.com/nl/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-nl language-set_flag"></span>Nederlands
+        </a>
+                <a href="https://capital.com/pl/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-pl language-set_flag"></span>Polski
+        </a>
+                <a href="https://capital.com/pt/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-pt language-set_flag"></span>Português
+        </a>
+                <a href="https://capital.com/ro/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-ro language-set_flag"></span>Română
+        </a>
+                <a href="https://capital.com/ru/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-ru language-set_flag"></span>Русский
+        </a>
+                <a href="https://capital.com/sk/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-sk language-set_flag"></span>Slovenčina
+        </a>
+                <a href="https://capital.com/sl/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-si language-set_flag"></span>Slovenščina
+        </a>
+                <a href="https://capital.com/fi/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-fi language-set_flag"></span>Suomi
+        </a>
+                <a href="https://capital.com/sv/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-se language-set_flag"></span>Svenska
+        </a>
+                <a href="https://capital.com/vi/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-vn language-set_flag"></span>Tiếng Việt
+        </a>
+                <a href="https://capital.com/th/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-th language-set_flag"></span>ไทย
+        </a>
+                <a href="https://capital.com/zh/partnership-programme-lp"  class="ln-auto language-set_item ">
+            <span class="flag-min flag-min-cn language-set_flag"></span>中文
+        </a>
+                </div>
+    </div>
+</div>
+</div>
+
+<!-- TrustBox script -->
+<script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+<!-- End TrustBox script -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/vendor/jquery.min.js"><\/script>')</script>
+<script>var _ln={"rg_1_pp_ttl":"You are currently in ##","rg_1_pp_text":"<p>Unfortunately, Citiglobalmarket is not currently operating in your country.<\/p><p>Please confirm that you are not a resident of ## and travelling there temporarily.<\/p>","st_no_item":"No item matched","sendlink_ph_serr":"Please try again later","sendlink_ph_err":"Incorrect format. Please enter the valid data","sendlink_ph_empty":"Please fill in the field","sendlink_em_serr":"Sorry, we are having technical issues. Please try again later.","sendlink_em_err":"Please enter a valid email","js_read_more":"Read more","j_monthes":"January,February,March,April,May,June,July,August,September,October,November,December","j_min_ago":"a minute ago","j_mins_ago":"## minutes ago","j_hour_ago":"an hour ago","j_hours_ago":"## hours ago","l_connection_error":"Connection Error","l_err_connection":"Unfortunately your request wasn't sent because of some connection error. Please try again","api_err_exists_ttl":"Account already exists","api_err_exists_txt":"An account with this email address already exists. Try <a href='#'>logging in<\/a> instead","l_login_failed":"Login failed","l_err_too_many_attempts":"Too many login attempts. Please reset your password or try again later.","l_acc_locked":"Your account is locked","l_err_acc_locked":"Sorry, you cannot access the platform at the moment. Please contact our support team at support@Citiglobalmarket-inc.com","l_2fa_err_ttl":"Invalid 2FA code","l_2fa_err_txt":"Please try again","l_acc_closed":"Your account is closed","l_err_acc_closed":"Sorry, you cannot access the platform at the moment. Please contact our support team at <a href='mailto:support@Citiglobalmarket-inc.com'>support@Citiglobalmarket-inc.com<\/a>","rg_cant_connect_fb":"Can't connect. Your Facebook account must have an associated email address."};
+var pTK = "9cfda6309391d0ae7be7";
+document.cookie = "__cp_lastPage=" + (document.location.href.split("?")[0]) + "; expires=Thu, 01 Jan 2025 00:00:01 UTC; path=/;";
+    var registerObj;
+</script>
+<script src="https://capital.com/js/p_main.js?v=1.7.62"></script>
+
+
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+            n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        fbqReInit = function(){
+            fbq('init', '226746234435298', {'em': sha256(uEm)});
+        };
+        (uEm ? fbqReInit() : fbq('init', '226746234435298'));
+        fbq('track', 'PageView');
+    </script>
+
+
+
+
+    <div class="blg-wd " id="blinger-btn">
+        <div class="blg-btn-w"><a class="blg-btn"><div class="blg-rs"><div class="blg-r"></div><div class="blg-r"></div><div class="blg-r"></div></div></a></div><div class="blg-c-w"><div class="blg-cs">
+                <div class="blg-c-wp"><a href="contact-" class="blg-c zd ln-auto"><span class="blg-tp"><span class="blg-tp-inner">Livechat</span></span></a></div>
+                <div class="blg-c-wp"><a href="viber:/" class="blg-c vb ln-auto"><span class="blg-tp"><span class="blg-tp-inner">Viber</span></span></a></div>
+                <div class="blg-c-wp"><a href="https://api.whatsapp.com/send?phone=12017494542" class="blg-c wp"><span class="blg-tp"><span class="blg-tp-inner">Whatsapp</span></span></a></div>
+                <div class="blg-c-wp"><a href="https://t.me/Citiglobalmarketbot" class="blg-c tg"><span class="blg-tp"><span class="blg-tp-inner">Telegram</span></span></a></div>
+                <div class="blg-c-wp"><a href="https://www.facebook.com/citigblobalmarket/" class="blg-c fb"><span class="blg-tp"><span class="blg-tp-inner">Facebook</span></span></a></div>
+            </div></div>
+    </div>
+<script>
+    $('#blinger-btn').on('click', function(){
+        try { dataLayer.push({'event' : 'siteEvent', 'eventCategory': 'blinger', 'eventAction': 'blinger_btn_click'}); } catch (e) {};
+                $('.blg-c-w').toggleClass('blinger-show');
+        $('.blg-btn').toggleClass('blinger-opened');
+        $('.blg-rs').toggleClass("blinger-hide");
+        $('.fixed-contact__icon').toggleClass('fixed-contact__icon--active');
+            });
+</script>
+
+
+<script src='https://www.google.com/recaptcha/api.js?render=6LeUuLoZAAAAADHg_o02k1zHLlIwCKwmEpnOxnwb'></script>
+<style>.grecaptcha-badge {display: none;}.cplzd {min-height: 150px;}</style>
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId            : snAppIdFb,
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v8.0'
+        });
+    };
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js" ></script>
+<script>
+    AppleID.auth.init({
+        clientId: "trading.capital.com",
+        scope: 'email',
+        redirectURI: window.location.origin + '/redirect-apple-signin',
+        state: 'capital',
+        nonce: (new Date().getTime()).toString(),
+        usePopup: true,
+    });
+</script>
+<script>
+    registerObj('formbottom' );registerShow();
+
+    $(".to-form").on('click', function(event) {
+      var anchor = $(this);
+      var header_height = $('.header-holder').outerHeight();
+      $('html, body').animate({
+        scrollTop: $(anchor.data('url')).offset().top - header_height
+      }, 1000);
+      event.preventDefault();
+    });
+    $('A', '#tapewidget').on('click', function(e){
+        e.preventDefault();
+    }).css('cursor', 'default');
+
+    var t = $(".video-youtube");
+    function sizeFrame() {
+      t.height(t.width() / (1080 / 615));
+    }
+    $(window).on('resize', sizeFrame).resize();
+
+    function animateValue(obj, start, end, duration) {
+      let startTimestamp = null;
+      var dd;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        dd =  Math.floor(progress * (end - start) + start);
+        obj.innerHTML = dd;
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    var allObj = $("span[data-count]");
+    var played = false;
+
+    var startMoney = 20000000;
+    var startDate = 1621882385432;
+    var costMinute = 72;
+    setInterval(function() {
+      var nowDate = Date.now();
+      var res = startMoney + Math.round((nowDate - startDate)/60/1000 * costMinute);
+      $('.counter__cont').text(res.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "));
+      // console.log(res.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "));
+    }, 1000);
+</script>
+
+</body>
+<!-- tm: 0.018547058105469  --></html>
